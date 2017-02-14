@@ -1,20 +1,20 @@
 tosca_definitions_version: tosca_simple_yaml_1_0
 
 metadata:
-  template_name: Ciscoiosshell
-  template_author: Anonymous
-  template_version: 0.1.0
+  template_name: Cisco IOS Switch Shell
+  template_author: Quali
+  template_version: 1.0.0
   template_icon: shell-icon.png
 
 description: >
- Sample TOSCA based shell
+ This Shell supports Cisco Switch devices that run IOS operating system
 
 imports:
-  - cloudshell_standard: cloudshell_networking_standard_4_0_1.yaml
+  - cloudshell_standard: cloudshell_networking_standard_5_0_0.yaml
 
 node_types:
 
-  vendor.Ciscoiosshell:
+  vendor.CiscoIOSSwitchShell:
     derived_from: cloudshell.nodes.Switch
     #properties:
     #  property_name:
@@ -43,7 +43,7 @@ node_types:
             type: cloudshell.datatypes.Password
           Enable Password:
             description: The enable password is required by some CLI protocols such as Telnet and is required according to the device configuration.
-            type: string
+            type: cloudshell.datatypes.Password
           Sessions Concurrency Limit:
             description: The maximum number of concurrent sessions that the driver will open to the device. Default is 1 (no concurrency).
             type: integer
@@ -82,11 +82,12 @@ node_types:
             description: The CLI connection type that will be used by the driver. Possible values are Auto, Console, SSH, Telnet and TCP. If Auto is selected the driver will choose the available connection type automatically. Default value is Auto.
           CLI TCP Port:
             description: TCP Port to user for CLI connection. If kept empty a default CLI port will be used based on the chosen protocol, for example Telnet will use port 23.
-            type: string
+            type: Numeric
+            default: 0
     artifacts:
       icon:
         file: shell-icon.png
         type: tosca.artifacts.File
       driver:
-        file: CiscoiosshellDriver.zip
+        file: CiscoiosswitchshellDriver.zip
         type: tosca.artifacts.File
