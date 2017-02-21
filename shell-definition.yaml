@@ -1,7 +1,7 @@
 tosca_definitions_version: tosca_simple_yaml_1_0
 
 metadata:
-  template_name: Cisco IOS Switch Shell
+  template_name: Cisco IOS Switch Shell 2 Generation
   template_author: Quali
   template_version: 1.0.0
   template_icon: shell-icon.png
@@ -14,7 +14,7 @@ imports:
 
 node_types:
 
-  vendor.CiscoIOSSwitchShell:
+  vendor.CiscoIOSSwitchShell_2Gen:
     derived_from: cloudshell.nodes.Switch
     #properties:
     #  property_name:
@@ -40,6 +40,7 @@ node_types:
             description: User with administrative privileges
             type: string
           Password:
+            description: The password is required by some CLI protocols such as Telnet and is required according to the device configuration.
             type: cloudshell.datatypes.Password
           Enable Password:
             description: The enable password is required by some CLI protocols such as Telnet and is required according to the device configuration.
@@ -89,5 +90,5 @@ node_types:
         file: shell-icon.png
         type: tosca.artifacts.File
       driver:
-        file: CiscoiosswitchshellDriver.zip
+        file: CiscoIOSSwitchShellDriver.zip
         type: tosca.artifacts.File
