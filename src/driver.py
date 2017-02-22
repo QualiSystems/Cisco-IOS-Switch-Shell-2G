@@ -20,7 +20,7 @@ from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterf
 
 class CiscoiosshellDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
     SUPPORTED_OS = [r"CAT[ -]?OS", r"IOS[ -]?X?[E]?"]
-    SHELL_NAME = "CiscoIOSSwitchShell_2Gen"
+    SHELL_NAME = "Cisco IOS Switch 2 Gen"
     # SHELL_NAME = ""
 
     def __init__(self):

@@ -14,7 +14,7 @@ imports:
 
 node_types:
 
-  vendor.CiscoIOSSwitchShell_2Gen:
+  vendor.Cisco IOS Switch 2 Gen:
     derived_from: cloudshell.nodes.Switch
     #properties:
     #  property_name:
@@ -90,5 +90,5 @@ node_types:
         file: shell-icon.png
         type: tosca.artifacts.File
       driver:
-        file: CiscoIOSSwitchShellDriver.zip
+        file: CiscoIOSSwitchShell2GenDriver.zip
         type: tosca.artifacts.File
