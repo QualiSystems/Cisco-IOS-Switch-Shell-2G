@@ -14,7 +14,7 @@ imports:
 
 node_types:
 
-  vendor.Cisco IOS Switch 2 Gen:
+  vendor.Cisco IOS Switch 2G:
     derived_from: cloudshell.nodes.Switch
     #properties:
     #  property_name:
