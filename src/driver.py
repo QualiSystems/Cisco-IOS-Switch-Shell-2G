@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from cloudshell.devices.driver_helper import get_logger_with_thread_id, get_api, get_cli
-from cloudshell.devices.driver_helper import parse_custom_commands
+
+from cloudshell.devices.driver_helper import get_logger_with_thread_id, get_api, get_cli, parse_custom_commands
 from cloudshell.devices.standards.networking.configuration_attributes_structure import \
     create_networking_resource_from_context
 from cloudshell.networking.cisco.cli.cisco_cli_handler import CiscoCliHandler as CliHandler
@@ -22,13 +22,13 @@ from cloudshell.shell.core.driver_utils import GlobalLock
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 
 
-class CiscoiosshellDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
+class CiscoIOSShellDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
     SUPPORTED_OS = [r"CAT[ -]?OS", r"IOS[ -]?X?[E]?"]
     SHELL_NAME = "Cisco IOS Switch 2G"
     # SHELL_NAME = ""
 
     def __init__(self):
-        super(CiscoiosshellDriver, self).__init__()
+        super(CiscoIOSShellDriver, self).__init__()
         self._cli = None
 
     def initialize(self, context):
