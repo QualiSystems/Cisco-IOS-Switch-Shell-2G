@@ -58,3 +58,5 @@ docs/_build/
 # PyBuilder
 target/
 cloudshell_config.yml
+src/test_ios.py
+*.zip
