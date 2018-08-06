@@ -268,6 +268,33 @@ class CiscoIOSShellDriver(ResourceDriverInterface, NetworkingResourceDriverInter
                                                        custom_params=custom_params)
         logger.info('Orchestration restore completed')
 
+    def clear_counters(self, context, interface):
+        """Send custom command
+
+        :param ResourceCommandContext context: ResourceCommandContext object with all Resource Attributes inside
+        :return: result
+        :rtype: str
+        """
+
+        logger = get_logger_with_thread_id(context)
+        api = get_api(context)
+
+        resource_config = create_networking_resource_from_context(shell_name=self.SHELL_NAME,
+                                                                      supported_os=self.SUPPORTED_OS,
+                                                                      context=context)
+
+        cli_handler = CliHandler(self._cli, resource_config, logger, api)
+
+        action_map = {"\[confirm\]": lambda session, logger: session.send_line("", logger)}
+
+            # send_command_operations = CommandRunner( logger=logger, cli_handler=cli_handler)
+
+        with cli_handler.get_cli_service(cli_handler.enable_mode) as session:
+            response = session.send_command("clear counters {}".format(interface), action_map=action_map)
+
+        return response
+
+
     @GlobalLock.lock
     def load_firmware(self, context, path, vrf_management_name):
         """Upload and updates firmware on the resource
