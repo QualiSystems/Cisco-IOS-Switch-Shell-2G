@@ -60,3 +60,5 @@ target/
 cloudshell_config.yml
 src/test_ios.py
 *.zip
+
+.idea/
