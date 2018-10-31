@@ -1,6 +1,6 @@
 ![](https://github.com/QualiSystems/cloudshell-shells-documentaion-templates/blob/master/cloudshell_logo.png)
 
-# Cisco-IOS-Switch-Shell
+# Cisco IOS Switch 2G Shell
 [![Build status](https://travis-ci.org/QualiSystems/Cisco-IOS-Switch-Shell-2G.svg?branch=dev)](https://travis-ci.org/QualiSystems/Cisco-IOS-Switch-Shell-2G)
 [![Coverage Status](https://coveralls.io/repos/github/QualiSystems/Cisco-IOS-Switch-Shell-2G/badge.svg)](https://coveralls.io/github/QualiSystems/Cisco-IOS-Switch-Shell-2G)
 [![Dependency Status](https://dependencyci.com/github/QualiSystems/Cisco-IOS-Switch-Shell-2G/badge)](https://dependencyci.com/github/QualiSystems/Cisco-IOS-Switch-Shell-2G)
