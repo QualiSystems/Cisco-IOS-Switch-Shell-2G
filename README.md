@@ -259,3 +259,7 @@ To connect with Quali users and experts from around the world, ask questions and
 **Cisco IOS Switch 2G Shell**
 
 For release updates, see the shell's [GitHub releases page](https://github.com/QualiSystems/Cisco-IOS-Switch-Shell-2G/releases).
+
+# Knowing Issues
+
+- Due to the Physical Entity table design, all ports that are missing a SFP or GBIC transceiver will be skipped during **Autoload**.
