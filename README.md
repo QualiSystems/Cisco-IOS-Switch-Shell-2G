@@ -262,4 +262,4 @@ For release updates, see the shell's [GitHub releases page](https://github.com/Q
 
 # Knowing Issues
 
-- Due to the EntityPhysical table design all ports that missing SFP or GBIC will be skipped during autoload.
+- Due to the Physical Entity table design, all ports that are missing a SFP or GBIC transceiver will be skipped during **Autoload**.
