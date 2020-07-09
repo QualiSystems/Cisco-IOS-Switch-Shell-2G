@@ -136,7 +136,10 @@ class CiscoIOSShellDriver(ResourceDriverInterface, NetworkingResourceDriverInter
                                                                 context=context, api=api)
 
         cli_handler = self._cli.get_cli_handler(resource_config, logger)
-        connectivity_operations = ConnectivityFlow(logger=logger, cli_handler=cli_handler)
+        connectivity_operations = ConnectivityFlow(logger=logger,
+                                                   cli_handler=cli_handler,
+                                                   support_multi_vlan_str=True,
+                                                   support_vlan_range_str=True)
         logger.info('Start applying connectivity changes.')
         # logger.info('Start applying connectivity changes, request is: {0}'.format(str(request)))
         result = connectivity_operations.apply_connectivity_changes(request=request)
