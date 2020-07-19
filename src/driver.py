@@ -21,7 +21,7 @@ from cloudshell.shell.standards.networking.resource_config import NetworkingReso
 
 
 class CiscoIOSShellDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
-    SUPPORTED_OS = [r"CAT[ -]?OS", r"IOS[ -]?X?[E]?"]
+    SUPPORTED_OS = [r"CAT[ -]?OS", r"IOS[ -]XE", r"IOS(?![ -]XR)"]
     SHELL_NAME = "Cisco IOS Switch 2G"
 
     def __init__(self):
