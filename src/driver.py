@@ -21,7 +21,7 @@ from cloudshell.shell.standards.networking.resource_config import NetworkingReso
 
 
 class CiscoIOSShellDriver(ResourceDriverInterface, NetworkingResourceDriverInterface, GlobalLock):
-    SUPPORTED_OS = [r"CAT[ -]?OS", r"IOS[ -]?X?[E]?"]
+    SUPPORTED_OS = [r"CAT[ -]?OS", r"IOS[ -]XE", r"IOS(?![ -]XR)"]
     SHELL_NAME = "Cisco IOS Switch 2G"
 
     def __init__(self):
@@ -136,10 +136,14 @@ class CiscoIOSShellDriver(ResourceDriverInterface, NetworkingResourceDriverInter
                                                                 context=context, api=api)
 
         cli_handler = self._cli.get_cli_handler(resource_config, logger)
-        connectivity_operations = ConnectivityFlow(logger=logger, cli_handler=cli_handler)
-        logger.info('Start applying connectivity changes, request is: {0}'.format(str(request)))
+        connectivity_operations = ConnectivityFlow(logger=logger,
+                                                   cli_handler=cli_handler,
+                                                   support_multi_vlan_str=True,
+                                                   support_vlan_range_str=True)
+        logger.info('Start applying connectivity changes.')
+        # logger.info('Start applying connectivity changes, request is: {0}'.format(str(request)))
         result = connectivity_operations.apply_connectivity_changes(request=request)
-        logger.info('Finished applying connectivity changes, response is: {0}'.format(str(result)))
+        # logger.info('Finished applying connectivity changes, response is: {0}'.format(str(result)))
         logger.info('Apply Connectivity changes completed')
         return result
 
