@@ -1,18 +1,54 @@
 language: python
-python:
-    - "2.7"
+python: 3.7
+jobs:
+  include:
+    - env: TOXENV=pre-commit
+      script: tox
+      install: pip install tox
+    - stage: Create GitHub release
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get -y install jq
+      install:
+        - pip install yq
+        - pip install tox
+      before_deploy:
+        - export AUTHOR_EMAIL="$(git log -1 $TRAVIS_COMMIT --pretty="%cE")"
+        - export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
+        - git config --local user.name $AUTHOR_NAME
+        - git config --local user.email $AUTHOR_EMAIL
+        - git tag $VERSION
+      script:
+        - tox
+        - export VERSION="$(yq -r .metadata.template_version shell-definition.yaml)"
+        - mv dist/dependencies-win32.zip dist/cloudshell-cisco-dependencies-win32-package-$VERSION.zip
+        - mv dist/dependencies-linux.zip dist/cloudshell-ciscopre-c-dependencies-linux-package-$VERSION.zip
+      deploy:
+        provider: releases
+        skip_cleanup: true
+        draft: true
+        api_key:
+          secure: "pDAgdYuvPqCLiU4PS4Q4t7jQ/LbXwtDpErlEfD8tOTLJYK8c1RAvJey1L30uQiTwJxjRbZxnbXcdUqOZAIryWkf8zNS5SGZrEVDvHSyleVcSzZk7My3QH2ONNzwbowRAFYQ/L5P5PFI8hUpo/mIumU4u7In+MDtHtk9lR4MG+fvwXC+VECvM7LCGKzW7dekVdx1A874FLEmtoeFMYjUtTAlwIZO55DBG6N733N2GoIwHB0b6ikU9U51zkfd1Kwy18nT2s/GvG9Be1CZE9GGsDnO1VyB18XwovQzh5QEOYONzIstoXQ/GDbgmzSznK5fOCjEfyggquGVt5Ntx4cwWcE7RCpibQv+05aBDhOgAUENGhdmh/7KSA8tLH31CZnKd/oq7FcL4r3BN/DKEEbXPNXAJ5iFYoejWSsOWakhfPo0uBs4GqxUBQEr0tVLMYvZf2S/E2x5rBAXqtuJbmOfZJVtydxukfDzYYSWk9mtK10fi75WcpCV0GKRgpdd0u9x7s101rCMhNZSmQApu4qpwygArBsPayY2mPPkkX5wvcXmMr1yvKY9BfDu6rQzXpU+rOXTKDfC1f+kBD4mHXcIy2aRuD+/KDKFF1oLCNGLI4WhFgzyY0aw79arWc6JFAYsaq+1GqhrvVoHOhUsQh+F9X3LR/QtvRUnrJ4XAYlOe8HU="
+        file_glob: true
+        file: dist/*.zip
+        name: OpenStack Shell 2G $GIT_TAG
+        target_commitish: master
+        on:
+          branch: master
+    - stage: Check version
+      before_install:
+        - sudo apt-get update
+        - sudo apt-get -y install jq
+      install:
+        - pip install yq
+        - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+        - cd $TRAVIS_REPO_SLUG
+        - git checkout -qf $TRAVIS_PULL_REQUEST_BRANCH
+      script: "! diff <(yq .metadata.template_version shell-definition.yaml) <(git show master:shell-definition.yaml > tmp.yaml && yq .metadata.template_version tmp.yaml)"
 
-install:
-    - 'if [ ${TRAVIS_BRANCH} \!= "master" ] && [ -f dev_requirements.txt ]; then
-        pip install --extra-index-url https://testpypi.python.org/pypi -r dev_requirements.txt;
-      else
-        pip install -r src/requirements.txt;
-      fi'
-    - pip install -r test_requirements.txt
-    - pip install coveralls
-
-script:
-    - nosetests --with-coverage --cover-package=src tests
-
-after_success:
-    - coveralls
+stages:
+  - name: Check version
+    if: branch = master AND type = pull_request
+  - name: Test
+  - name: Create GitHub release
+    if: branch = master AND type != pull_request
