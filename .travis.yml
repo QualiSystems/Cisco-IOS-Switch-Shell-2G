@@ -28,7 +28,7 @@ jobs:
         skip_cleanup: true
         draft: true
         api_key:
-          secure: ""
+          secure: "pDAgdYuvPqCLiU4PS4Q4t7jQ/LbXwtDpErlEfD8tOTLJYK8c1RAvJey1L30uQiTwJxjRbZxnbXcdUqOZAIryWkf8zNS5SGZrEVDvHSyleVcSzZk7My3QH2ONNzwbowRAFYQ/L5P5PFI8hUpo/mIumU4u7In+MDtHtk9lR4MG+fvwXC+VECvM7LCGKzW7dekVdx1A874FLEmtoeFMYjUtTAlwIZO55DBG6N733N2GoIwHB0b6ikU9U51zkfd1Kwy18nT2s/GvG9Be1CZE9GGsDnO1VyB18XwovQzh5QEOYONzIstoXQ/GDbgmzSznK5fOCjEfyggquGVt5Ntx4cwWcE7RCpibQv+05aBDhOgAUENGhdmh/7KSA8tLH31CZnKd/oq7FcL4r3BN/DKEEbXPNXAJ5iFYoejWSsOWakhfPo0uBs4GqxUBQEr0tVLMYvZf2S/E2x5rBAXqtuJbmOfZJVtydxukfDzYYSWk9mtK10fi75WcpCV0GKRgpdd0u9x7s101rCMhNZSmQApu4qpwygArBsPayY2mPPkkX5wvcXmMr1yvKY9BfDu6rQzXpU+rOXTKDfC1f+kBD4mHXcIy2aRuD+/KDKFF1oLCNGLI4WhFgzyY0aw79arWc6JFAYsaq+1GqhrvVoHOhUsQh+F9X3LR/QtvRUnrJ4XAYlOe8HU="
         file_glob: true
         file: dist/*.zip
         name: OpenStack Shell 2G $GIT_TAG

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from cloudshell.shell.core.driver_context import (
     AutoLoadCommandContext,
+    AutoLoadDetails,
     InitCommandContext,
     ResourceCommandContext,
 )
@@ -52,7 +53,7 @@ class CiscoIOSShellDriver(
         super(CiscoIOSShellDriver, self).__init__()
         self._cli = None
 
-    def initialize(self, context: InitCommandContext):
+    def initialize(self, context: InitCommandContext) -> str:
         """Initialize method.
 
         :param context: an object with all Resource Attributes inside
@@ -65,12 +66,11 @@ class CiscoIOSShellDriver(
         return "Finished initializing"
 
     @GlobalLock.lock
-    def get_inventory(self, context: AutoLoadCommandContext):
+    def get_inventory(self, context: AutoLoadCommandContext) -> AutoLoadDetails:
         """Return device structure with all standard attributes.
 
         :param context: an object with all Resource Attributes inside
         :return: response
-        :rtype: str
         """
         logger = LoggingSessionContext.get_logger_with_thread_id(context)
         api = CloudShellSessionContext(context).get_api()
@@ -98,13 +98,14 @@ class CiscoIOSShellDriver(
         logger.info("Autoload completed")
         return response
 
-    def run_custom_command(self, context: ResourceCommandContext, custom_command: str):
+    def run_custom_command(
+        self, context: ResourceCommandContext, custom_command: str
+    ) -> str:
         """Send custom command.
 
         :param custom_command: Command user wants to send to the device.
         :param context: an object with all Resource Attributes inside
         :return: result
-        :rtype: str
         """
         logger = LoggingSessionContext.get_logger_with_thread_id(context)
         api = CloudShellSessionContext(context).get_api()
@@ -129,13 +130,12 @@ class CiscoIOSShellDriver(
 
     def run_custom_config_command(
         self, context: ResourceCommandContext, custom_command: str
-    ):
+    ) -> str:
         """Send custom command in configuration mode.
 
         :param custom_command: Command user wants to send to the device
         :param context: an object with all Resource Attributes inside
         :return: result
-        :rtype: str
         """
         logger = LoggingSessionContext.get_logger_with_thread_id(context)
         api = CloudShellSessionContext(context).get_api()
@@ -158,7 +158,9 @@ class CiscoIOSShellDriver(
 
         return result_str
 
-    def ApplyConnectivityChanges(self, context: ResourceCommandContext, request: str):
+    def ApplyConnectivityChanges(
+        self, context: ResourceCommandContext, request: str
+    ) -> str:
         """
         Create vlan and add or remove it to/from network interface.
 
@@ -194,14 +196,14 @@ class CiscoIOSShellDriver(
         folder_path: str,
         configuration_type: str,
         vrf_management_name: str,
-    ):
+    ) -> str:
         """Save selected file to the provided destination.
 
         :param context: an object with all Resource Attributes inside
         :param configuration_type: source file, which will be saved
         :param folder_path: destination path where file will be saved
         :param vrf_management_name: VRF management Name
-        :return str saved configuration file name:
+        :return str saved configuration file name
         """
         logger = LoggingSessionContext.get_logger_with_thread_id(context)
         api = CloudShellSessionContext(context).get_api()
@@ -283,7 +285,7 @@ class CiscoIOSShellDriver(
 
     def orchestration_save(
         self, context: ResourceCommandContext, mode: str, custom_params: str
-    ):
+    ) -> str:
         """Save selected file to the provided destination.
 
         :param context: an object with all Resource Attributes inside
@@ -390,7 +392,6 @@ class CiscoIOSShellDriver(
 
         :param context: an object with all Resource Attributes inside
         :return: Success or Error message
-        :rtype: str
         """
         logger = LoggingSessionContext.get_logger_with_thread_id(context)
         api = CloudShellSessionContext(context).get_api()
