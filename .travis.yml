@@ -10,8 +10,6 @@ jobs:
       after_success: codecov
     - env: TOXENV=pack
     - env: TOXENV=pre-commit
-      script: tox
-      install: pip install tox
     - stage: Create GitHub release
       before_install:
         - sudo apt-get update
