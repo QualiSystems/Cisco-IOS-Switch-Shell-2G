@@ -5,9 +5,9 @@
 
 # Cisco IOS Switch 2G Shell
 
-Release date: September 2019
+Release date: September 2020
 
-Shell version: 3.0.0
+Shell version: 3.0.1
 
 Document version: 1.0
 
