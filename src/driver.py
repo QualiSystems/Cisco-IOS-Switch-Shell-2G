@@ -184,6 +184,7 @@ class CiscoIOSShellDriver(
             cli_handler=cli_handler,
             support_multi_vlan_str=True,
             support_vlan_range_str=True,
+            is_switch=True
         )
         logger.info("Start applying connectivity changes.")
         result = connectivity_operations.apply_connectivity_changes(request=request)
