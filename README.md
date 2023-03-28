@@ -5,9 +5,9 @@
 
 # Cisco IOS Switch 2G Shell
 
-Release date: September 2020
+Release date: March 2023
 
-Shell version: 3.0.1
+Shell version: 4.0.0
 
 Document version: 1.0
 
@@ -42,9 +42,9 @@ For detailed information about the shell’s structure and attributes, see the [
 
 Release: **Cisco IOS Switch 2G Shell**
 
-▪ CloudShell version: 9.3 and above
+▪ CloudShell version: 2021.1 GA and above
 
-▪ Python Version: 3.7
+▪ Python Version: 3.7, 3.9
 
 ▪ Cisco OS: Cisco IOS, Cisco IOS-XE, Cisco CatOS
 
@@ -257,5 +257,3 @@ To connect with Quali users and experts from around the world, ask questions and
 For release updates, see the shell's [GitHub releases page](https://github.com/QualiSystems/Cisco-IOS-Switch-Shell-2G/releases).
 
 # Known Issues
-
-- Due to the Physical Entity table design, all ports that has **no** SFP or GBIC transceiver installed will be skipped during the **Autoload**.

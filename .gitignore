@@ -61,3 +61,5 @@ cloudshell_config.yml
 src/test_ios.py
 *.zip
 /.pip-download-cache
+/.idea
+/src/run*
