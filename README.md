@@ -236,9 +236,9 @@ The Startup or Running configuration is saved to a file named *<ResourceName>-<s
 2. Run the **Load Firmware** resource command. 
 
 3. In the command inputs field, enter the following information:
-	* **Remote Host** (Mandatory). Enter the full path to the firmware file on the remote host, for example: *tftp://10.1.1.1/ios12.SE1-smp-k8.bin* 
-	* **File Path** (Mandatory). Enter the destination filename on the device itself, for example: *bootflash:/ios12.SE1-smp-k8.bin*.
-	
+	* **Path** (Mandatory) Enter the full path to the firmware file on the remote host, for example: *tftp://10.1.1.1/ios12.SE1-smp-k8.bin* 
+    * **VRF Management Name**: (Optional) Provide the VRF Management name, if relevant.
+
 4. Click **Run**.
 
 # References
